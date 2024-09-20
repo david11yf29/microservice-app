@@ -1,0 +1,161 @@
+services:
+  mongodb:
+    container_name: microservice_mongo_db
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - spring-boot-network
+    volumes:
+      - microservice_mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+volumes:
+  microservice_mongo:
+#  keycloak:
+
+networks:
+  spring-boot-network:
+    driver: bridge
+#
+#mongo-express:
+#container_name: techie_mongo_express
+#image: mongo-express
+#restart: unless-stopped
+#ports:
+#- "8081:8081"
+#networks:
+#- spring-boot-network
+#depends_on:
+#- mongodb
+#environment:
+#- ME_CONFIG_MONGODB_ADMINUSERNAME=root
+#- ME_CONFIG_MONGODB_ADMINPASSWORD=123456
+#- ME_CONFIG_MONGODB_SERVER=mongodb
+#- ME_CONFIG_BASICAUTH=false
+#
+#db_mysql_order:
+#image: mysql:latest
+#container_name: techie_mysql_order
+#ports:
+#- "3308:3308"
+#networks:
+#- spring-boot-network
+#environment:
+#- MYSQL_DATABASE=order-service
+#- MYSQL_PASSWORD=123456
+#- MYSQL_ROOT_PASSWORD=123456
+#- MYSQL_TCP_PORT=3308
+#volumes:
+#- .data:/var/lib/mysql
+##      - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
+#
+#db_mysql_inventory:
+#image: mysql:latest
+#container_name: techie_mysql_inventory
+#ports:
+#- "3307:3307"
+#networks:
+#- spring-boot-network
+#environment:
+#- MYSQL_DATABASE=inventory-service
+#- MYSQL_PASSWORD=123456
+#- MYSQL_ROOT_PASSWORD=123456
+#- MYSQL_TCP_PORT=3307
+#volumes:
+#- .data2:/var/lib/mysql2
+##      - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
+#
+#keycloak:
+#image: quay.io/keycloak/keycloak:latest
+#container_name: techie_keycloak
+#command: start
+##    command: start
+#environment:
+#KC_HOSTNAME: localhost
+#KC_HOSTNAME_PORT: 8080
+#KC_HOSTNAME_STRICT_BACKCHANNEL: false
+#KC_HTTP_ENABLED: true
+#KC_HOSTNAME_STRICT_HTTPS: false
+#KC_HEALTH_ENABLED: true
+#KEYCLOAK_ADMIN: root
+#KEYCLOAK_ADMIN_PASSWORD: 123456
+#volumes:
+#- keycloak:/opt/keycloak/data/
+#ports:
+#- "8181:8080"
+#restart: always
+#networks:
+#- spring-boot-network
+#
+#zookeeper:
+#image: confluentinc/cp-zookeeper:latest
+#container_name: techie_zookeeper
+#environment:
+##      ZOOKEEPER_SERVER_ID: 1
+#ZOOKEEPER_CLIENT_PORT: 2181
+#ZOOKEEPER_TICK_TIME: 2000
+#ports:
+#- "22181:2181"
+#networks:
+#- spring-boot-network
+#
+#kafka:
+#image: confluentinc/cp-kafka:latest
+#container_name: techie_kafka
+#ports:
+#- "9092:9092"
+#depends_on:
+#- zookeeper
+#environment:
+#KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+#KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+#KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+#KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+#networks:
+#- spring-boot-network
+#
+### Prometheus
+#prometheus:
+#image: prom/prometheus:v2.37.1
+#container_name: techie_prometheus
+#restart: unless-stopped
+#ports:
+#- "9090:9090"
+#volumes:
+#- ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+##    depends_on:
+##      - product-service
+##      - inventory-service
+##      - order-service
+##      - notification-service
+#networks:
+#- spring-boot-network
+#
+#grafana:
+#image: grafana/grafana-oss:8.5.2
+#container_name: techie_grafana
+#restart: unless-stopped
+#ports:
+#- "3000:3000"
+#links:
+#- prometheus:prometheus
+#volumes:
+#- ./grafana:/var/lib/grafana
+#environment:
+#- GF_SECURITY_ADMIN_USER=root
+#- GF_SECURITY_ADMIN_PASSWORD=123456
+#networks:
+#- spring-boot-network
+#
+#volumes:
+#mongo:
+#keycloak:
+#
+#networks:
+#spring-boot-network:
+#driver: bridge

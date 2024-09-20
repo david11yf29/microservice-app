@@ -7,51 +7,36 @@ services:
     networks:
       - spring-boot-network
     volumes:
-      - microservice_mongo:/data/db
+      - microservice_mongo_db:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password
 
+  db_mysql_order:
+    image: mysql:latest
+    container_name: microservice_mysql_order
+    ports:
+    - "3308:3308"
+    networks:
+    - spring-boot-network
+    environment:
+    - MYSQL_DATABASE=order-service
+    - MYSQL_PASSWORD=password
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_TCP_PORT=3308
+    volumes:
+    - microservice_mysql_order:/var/lib/mysql
+#      - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
+
 volumes:
-  microservice_mongo:
+  microservice_mongo_db:
+  microservice_mysql_order:
 #  keycloak:
 
 networks:
   spring-boot-network:
     driver: bridge
-#
-#mongo-express:
-#container_name: techie_mongo_express
-#image: mongo-express
-#restart: unless-stopped
-#ports:
-#- "8081:8081"
-#networks:
-#- spring-boot-network
-#depends_on:
-#- mongodb
-#environment:
-#- ME_CONFIG_MONGODB_ADMINUSERNAME=root
-#- ME_CONFIG_MONGODB_ADMINPASSWORD=123456
-#- ME_CONFIG_MONGODB_SERVER=mongodb
-#- ME_CONFIG_BASICAUTH=false
-#
-#db_mysql_order:
-#image: mysql:latest
-#container_name: techie_mysql_order
-#ports:
-#- "3308:3308"
-#networks:
-#- spring-boot-network
-#environment:
-#- MYSQL_DATABASE=order-service
-#- MYSQL_PASSWORD=123456
-#- MYSQL_ROOT_PASSWORD=123456
-#- MYSQL_TCP_PORT=3308
-#volumes:
-#- .data:/var/lib/mysql
-##      - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
-#
+
 #db_mysql_inventory:
 #image: mysql:latest
 #container_name: techie_mysql_inventory
@@ -159,3 +144,23 @@ networks:
 #networks:
 #spring-boot-network:
 #driver: bridge
+
+
+#Maybe not used in the project
+#
+#mongo-express:
+#container_name: techie_mongo_express
+#image: mongo-express
+#restart: unless-stopped
+#ports:
+#- "8081:8081"
+#networks:
+#- spring-boot-network
+#depends_on:
+#- mongodb
+#environment:
+#- ME_CONFIG_MONGODB_ADMINUSERNAME=root
+#- ME_CONFIG_MONGODB_ADMINPASSWORD=123456
+#- ME_CONFIG_MONGODB_SERVER=mongodb
+#- ME_CONFIG_BASICAUTH=false
+#

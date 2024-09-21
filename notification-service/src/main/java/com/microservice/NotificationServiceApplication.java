@@ -1,13 +1,23 @@
 package com.microservice;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.KafkaListener;
 
 @SpringBootApplication
+@Slf4j
 public class NotificationServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(NotificationServiceApplication.class, args);
+	}
+
+	@KafkaListener (topics = "notificationTopic", groupId = "notificationId")
+	public void handleNotification(OrderPlacedEvent orderPlacedEvent) {
+
+		// Send an email notification
+		log.info("Received Notificaiton for Order - {}", orderPlacedEvent.getOrderNumber());
 	}
 
 }

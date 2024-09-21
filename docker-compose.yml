@@ -66,6 +66,37 @@ services:
     networks:
     - spring-boot-network
 
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: microservice_zookeeper
+    environment:
+    #      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+    - "22181:2181"
+    networks:
+    - spring-boot-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: microservice_kafka
+    ports:
+    - "9092:9092"
+    depends_on:
+    - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    networks:
+    - spring-boot-network
+
+
 networks:
   spring-boot-network:
     driver: bridge
@@ -75,36 +106,6 @@ volumes:
   microservice_mysql_order:
   microservice_mysql_inventory:
   keycloak:
-#
-#zookeeper:
-#image: confluentinc/cp-zookeeper:latest
-#container_name: techie_zookeeper
-#environment:
-##      ZOOKEEPER_SERVER_ID: 1
-#ZOOKEEPER_CLIENT_PORT: 2181
-#ZOOKEEPER_TICK_TIME: 2000
-#ports:
-#- "22181:2181"
-#networks:
-#- spring-boot-network
-#
-#kafka:
-#image: confluentinc/cp-kafka:latest
-#container_name: techie_kafka
-#ports:
-#- "9092:9092"
-#depends_on:
-#- zookeeper
-#environment:
-#KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-#KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-#KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-#KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-#KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-#networks:
-#- spring-boot-network
-#
 ### Prometheus
 #prometheus:
 #image: prom/prometheus:v2.37.1

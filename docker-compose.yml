@@ -44,6 +44,28 @@ services:
     - microservice_mysql_inventory:/var/lib/mysql2
 #      - ./init-script.sql:/docker-entrypoint-initdb.d/init-script.sql
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: microservice_keycloak
+    command: start
+    #    command: start
+    environment:
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HEALTH_ENABLED: true
+      KEYCLOAK_ADMIN: root
+      KEYCLOAK_ADMIN_PASSWORD: password
+    volumes:
+    - keycloak:/opt/keycloak/data/
+    ports:
+    - "8181:8080"
+    restart: always
+    networks:
+    - spring-boot-network
+
 networks:
   spring-boot-network:
     driver: bridge
@@ -52,30 +74,7 @@ volumes:
   microservice_mongo_db:
   microservice_mysql_order:
   microservice_mysql_inventory:
-  #  keycloak:
-
-
-#keycloak:
-#image: quay.io/keycloak/keycloak:latest
-#container_name: techie_keycloak
-#command: start
-##    command: start
-#environment:
-#KC_HOSTNAME: localhost
-#KC_HOSTNAME_PORT: 8080
-#KC_HOSTNAME_STRICT_BACKCHANNEL: false
-#KC_HTTP_ENABLED: true
-#KC_HOSTNAME_STRICT_HTTPS: false
-#KC_HEALTH_ENABLED: true
-#KEYCLOAK_ADMIN: root
-#KEYCLOAK_ADMIN_PASSWORD: 123456
-#volumes:
-#- keycloak:/opt/keycloak/data/
-#ports:
-#- "8181:8080"
-#restart: always
-#networks:
-#- spring-boot-network
+  keycloak:
 #
 #zookeeper:
 #image: confluentinc/cp-zookeeper:latest

@@ -32,17 +32,16 @@ Key-cloak(:8181) - Token Authentication
  - 使用 Grafana 進行數據提取和數據可視化：`http://localhost:3000`
   
 ## 技術細節
-- **後端**：Spring Boot, MyBatis, Websocket
-- **資料庫**：MySQL, Redis
-- **前端**：Nginx
+- **後端**：Spring Boot, apigateway, Eureka, kafka, docker, Prometheus, Grafana
+- **資料庫**：MySQL, MongoDB
 
 ## 示例
 https://github.com/user-attachments/assets/1449a1c6-5248-415e-8d56-86540886a1d8
 
-<img width="420" alt="截圖 2024-12-05 下午2 00 58" src="https://github.com/user-attachments/assets/07229cef-b335-4a51-af47-a70fdcd465bb">
-<img width="420" alt="截圖 2024-12-05 下午2 01 12" src="https://github.com/user-attachments/assets/1281b73b-91d7-46eb-8b03-3e9b7edc6741">
-<img width="420" alt="截圖 2024-12-05 下午2 01 17" src="https://github.com/user-attachments/assets/13532d31-2d4f-4975-98f7-a8227655da33">
-<img width="420" alt="截圖 2024-12-05 下午2 00 43" src="https://github.com/user-attachments/assets/253e0a0e-03b5-4cf3-8020-8be7bb27df03">
+![c1abcca3-a392-450a-85ef-6d5cb824d7fa](https://github.com/user-attachments/assets/f5830e9b-4853-46cc-9965-3800c60a156e)
+![11930fb9-5025-4285-b4db-182dee1e7080](https://github.com/user-attachments/assets/2737d877-9ef8-4b62-894d-9c0cfdfb13d9)
+![fd88c994-9968-4c4e-9eb0-cc44d07b6c01](https://github.com/user-attachments/assets/e1d0d514-b1db-4f37-ad09-715bbddc40a9)
+![5a5f3e2d-9f0d-4398-8963-90770aa0758a](https://github.com/user-attachments/assets/0709034b-0c52-4b60-b985-e8497c9cb6a4)
 
 ## 授權
 本項目基於 [MIT License](LICENSE) 許可使用。

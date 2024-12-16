@@ -20,6 +20,7 @@
  - 加入新產品至資料庫：`POST http://localhost:8083/api/product`
  - 查詢產品清單：`GET http://localhost:8083/api/product`
  - 提交訂單：`POST http://localhost:8083/api/order`
+網頁：
  - 確認 App 各微服務狀態：`http://localhost:8761`
  - 使用 Grafana 進行數據提取和數據可視化：`http://localhost:3000`
   

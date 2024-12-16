@@ -36,8 +36,6 @@ Key-cloak(:8181) - Token Authentication
 - **資料庫**：MySQL, MongoDB
 
 ## 示例
-https://github.com/user-attachments/assets/1449a1c6-5248-415e-8d56-86540886a1d8
-
 ![c1abcca3-a392-450a-85ef-6d5cb824d7fa](https://github.com/user-attachments/assets/f5830e9b-4853-46cc-9965-3800c60a156e)
 ![11930fb9-5025-4285-b4db-182dee1e7080](https://github.com/user-attachments/assets/2737d877-9ef8-4b62-894d-9c0cfdfb13d9)
 ![fd88c994-9968-4c4e-9eb0-cc44d07b6c01](https://github.com/user-attachments/assets/e1d0d514-b1db-4f37-ad09-715bbddc40a9)

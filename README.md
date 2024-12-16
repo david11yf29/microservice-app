@@ -19,9 +19,9 @@ Key-cloak(:8181) - Token Authentication
 - [授權](#授權)
 
 ## 功能
-- 提供 RESTful API (Postman)
+- 提供 RESTful API
 - 使用 Kafka 推送下單成功訊息
-- 使用 Grafana 視圖化流量情況
+- 使用 Grafana 視圖化流量數據
 
 ## 使用方法
 使用 Postman 測試系統：
@@ -32,7 +32,7 @@ Key-cloak(:8181) - Token Authentication
  - 使用 Grafana 進行數據提取和數據可視化：`http://localhost:3000`
   
 ## 技術細節
-- **後端**：Spring Boot, apigateway, Eureka, kafka, docker, Prometheus, Grafana
+- **後端**：Spring Boot, API Gateway, Eureka, Kafka, Docker, Prometheus, Grafana
 - **資料庫**：MySQL, MongoDB
 
 ## 示例

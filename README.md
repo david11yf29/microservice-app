@@ -3,14 +3,6 @@
 # microservice-app
 一個使用 Spring Boot 框架的下單 App，用於下單和發送通知。
 
-Discovery Server(:8761) - Eureka Server
-Production Service(:8080), Inventory Service(:8082)
-Order Service(:8081) - Kafka
-ApiGateway(:8083)
-Notification Service(:8084) - Kafka
-Prometheus(:9090) + Grafana(:3000) - Monitor Health
-Key-cloak(:8181) - Token Authentication
-
 ## 目錄
 - [功能](#功能)
 - [使用方法](#使用方法)
